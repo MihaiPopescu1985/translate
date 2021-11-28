@@ -1,4 +1,4 @@
-package translate
+package magento
 
 import (
 	"io/ioutil"
