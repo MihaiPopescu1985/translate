@@ -1,5 +1,3 @@
-module github.com/MihaiPopescu1985/translate
+module magento
 
 go 1.17
-
-require ./magento
