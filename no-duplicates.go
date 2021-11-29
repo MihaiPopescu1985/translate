@@ -7,6 +7,39 @@ import (
 	"strings"
 )
 
+func NoDuplicates(file string) {
+	content, err := ioutil.ReadFile(file)
+	if err != nil {
+		panic("file not found: " + file)
+	}
+	expr := regexp.MustCompile(`(module|theme|lib),.+\n`)
+	indexes := expr.FindAllIndex(content, -1)
+
+	ki := 0
+	vi := 0
+	set := make(map[string][]byte, 0)
+
+	for i := range indexes {
+		key := make([]byte, 0)
+		val := make([]byte, 0)
+		for ; ki < indexes[i][0]; ki++ {
+			key = append(key, content[ki])
+		}
+		for vi = indexes[i][0]; vi < indexes[i][1]; vi++ {
+			val = append(val, content[vi])
+			ki++
+		}
+		set[string(key)] = val
+	}
+	final, _ := os.OpenFile("finalnodups3", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+	for k, v := range set {
+		final.WriteString(k)
+		final.Write(v)
+	}
+	final.Sync()
+	final.Close()
+}
+
 /*
 * Removes duplicates entries from files. Usefull for magento translations.
 * Takes 3 arguments: the left file, the mid file and the right file and combines them into result file.

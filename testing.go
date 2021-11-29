@@ -1,12 +1,6 @@
 package translate
 
-import (
-	"fmt"
-	"io/ioutil"
-	"regexp"
-	"testing"
-)
-
+/*
 func LineEndings(left, mid string, delimiter []byte) {
 	leftFile, _ := ioutil.ReadFile("left")
 	midFile, _ := ioutil.ReadFile("mid")
@@ -22,7 +16,7 @@ func LineEndings(left, mid string, delimiter []byte) {
 		charL := indexesL[i][0] - 1
 		charM := indexesM[i][0] - 1
 		if leftFile[charL] != midFile[charM] {
-			t.Errorf("pe randul %d %s != %s", i, string(leftFile[charL]), string(midFile[charM]))
+			fmt.Errorf("pe randul %d %s != %s", i, string(leftFile[charL]), string(midFile[charM]))
 		}
 	}
 }
@@ -63,4 +57,4 @@ func TestQuotes(t *testing.T) {
 	fmt.Println(row)
 	fmt.Println(len(row))
 }
-
+*/

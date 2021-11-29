@@ -16,9 +16,7 @@ func Combine(left, mid, right string) {
 	rightFile, _ := ioutil.ReadFile(right)
 
 	content := make([]byte, 0)
-
 	var state int8 = 0
-	// indexes
 
 	for state < 3 {
 		switch state {
@@ -45,6 +43,7 @@ func Combine(left, mid, right string) {
 			content = append(content, midFile[im])
 			im++
 		case 2:
+
 			if rightFile[ir] == '\n' {
 				state = 0
 			}
@@ -55,8 +54,7 @@ func Combine(left, mid, right string) {
 			}
 		}
 	}
-
-	final, _ := os.OpenFile("step2/final", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+	final, _ := os.OpenFile("final", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
 	final.Write(content)
 	final.Sync()
 	final.Close()

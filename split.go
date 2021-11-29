@@ -11,8 +11,10 @@ import (
 
 func SplitMagentoCSV(fileName string) {
 	//get the file content
-	filename := fileName
-	fileContent, _ := ioutil.ReadFile(filename)
+	fileContent, err := ioutil.ReadFile(fileName)
+	if err != nil {
+		panic("file not found: " + fileName)
+	}
 
 	expr := regexp.MustCompile(`,(module|theme|lib),.+\n`)
 	indexes := expr.FindAllIndex(fileContent, -1)
